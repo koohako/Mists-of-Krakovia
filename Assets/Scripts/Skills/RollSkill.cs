@@ -26,7 +26,6 @@ public class RollSkill : BaseSkill
 
     public IEnumerator PerformDash(Transform transform, Vector2 moveDirection, Rigidbody2D rb)
     {
-        transform.GetComponent<PlayerMovement>().SetIsDashing(true);
 
         // Posição inicial e final
         Vector2 startPosition = transform.position;
@@ -58,7 +57,6 @@ public class RollSkill : BaseSkill
 
         // Garante que chegue na posição final
         rb.MovePosition(endPosition);
-        transform.GetComponent<PlayerMovement>().SetIsDashing(false);
 
         // Cooldown
         yield return new WaitForSeconds(dashCooldown);

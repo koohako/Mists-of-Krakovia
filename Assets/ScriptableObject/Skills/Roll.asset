@@ -15,7 +15,7 @@ MonoBehaviour:
   skillName: Rolamento
   description: 
   icon: {fileID: 0}
-  cooldown: 0
+  cooldown: 1
   manaCost: 0
   dashDistance: 5
   dashDuration: 0.2
