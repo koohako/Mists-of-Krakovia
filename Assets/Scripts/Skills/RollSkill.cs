@@ -5,7 +5,7 @@ using UnityEngine;
 public class RollSkill : BaseSkill
 {
 
-    [Header("Dash Settings")]
+    [Header("Roll Settings")]
     public float dashDistance = 5f;
     public float dashDuration = 0.2f;
     public float dashCooldown = 1f;

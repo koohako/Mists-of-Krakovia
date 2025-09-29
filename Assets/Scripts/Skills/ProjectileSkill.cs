@@ -24,14 +24,16 @@ public class ProjectileSkill : BaseSkill
         else
         {
             // Múltiplos projéteis com spread
-            for (int i = 0; i < projectileCount; i++)
+            if (projectileCount > 1)
             {
+                for (int i = 0; i < projectileCount; i++)
+                {
                     float angle = -spreadAngle / 2 + (spreadAngle / (projectileCount - 1)) * i;
                     Vector2 baseDir = (targetPosition - shootPoint.position).normalized;
                     Vector2 dir = Quaternion.Euler(0, 0, angle) * baseDir;
                     var go = Instantiate(projectilePrefab, shootPoint.position, Quaternion.identity);
                     go.GetComponent<Projectile>().Init(dir);
-
+                }
             }
         }
     }

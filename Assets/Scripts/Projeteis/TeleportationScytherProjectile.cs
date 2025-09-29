@@ -17,13 +17,12 @@ public class TeleportationScytherProjectile : MonoBehaviour
 
     public void Initialize(Transform casterTransform)
     {
-        caster = casterTransform;
+        target = casterTransform;
     }
 
     void Start()
     {
         SetDirection();
-        target = GameObject.FindGameObjectWithTag("Player")?.transform;
         StartCoroutine(BoomerangRoutine());
     }
 
