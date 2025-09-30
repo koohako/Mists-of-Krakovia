@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 3684957d933ccab41bda9ed0b1dd75de
+guid: 42ccfb25c9a5b68448043061e9308783
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5443973059367918002
-    second: Bandeira_0
+      213: -3207332394761252146
+    second: C-4_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -49,8 +49,8 @@ TextureImporter:
   spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
-  alignment: 2
-  spritePivot: {x: 0.5, y: 1}
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
@@ -113,23 +113,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Bandeira_0
+      name: C-4_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 32
-        height: 64
+        x: 5
+        y: 6
+        width: 20
+        height: 20
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e46249d885f1374b0800000000000000
-      internalID: -5443973059367918002
+      spriteID: ec217ad1e244d73d0800000000000000
+      internalID: -3207332394761252146
       vertices: []
       indices: 
       edges: []
@@ -139,7 +139,7 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 1537655665
+    internalID: 0
     vertices: []
     indices: 
     edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Bandeira_0: -5443973059367918002
+      C-4_0: -3207332394761252146
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
