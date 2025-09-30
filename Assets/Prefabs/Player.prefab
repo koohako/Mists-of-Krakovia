@@ -121,10 +121,12 @@ MonoBehaviour:
   canvas: {fileID: 6220446910753516465}
   healthBar: {fileID: 8622651230182985072}
   healthBarBackground: {fileID: 6050570044739421464}
+  healthBarEndInfill: {fileID: 6859142262899580574}
   maxHealth: 100
   currentHealth: 100
   manaBar: {fileID: 1832048135257966009}
   manaBarBackground: {fileID: 5459855503557893479}
+  manaBarEndInfill: {fileID: 4318247656680807999}
   maxMana: 100
   currentMana: 100
 --- !u!1 &1408100143615121838
@@ -373,7 +375,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1749467265438914351
 Transform:
   m_ObjectHideFlags: 0
@@ -526,7 +528,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 3.1373596, y: 0}
+  m_AnchoredPosition: {x: 3.1373749, y: 0}
   m_SizeDelta: {x: 6.25, y: 12.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1493906650266134111
@@ -1201,6 +1203,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7829b462874c6a54aabbfb15db7a3501, type: 2}
   - {fileID: 11400000, guid: 7c844c583cf1e984081cdcb8dba7a75a, type: 2}
   - {fileID: 11400000, guid: 0a44cf6f5fa96ed4c8f52912e471e7f0, type: 2}
+  - {fileID: 11400000, guid: b74fe9ae233cd4345a5b3df1238314e2, type: 2}
   skillInputs:
   - {fileID: -7471211009204490832, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   - {fileID: 3475669127304787529, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}

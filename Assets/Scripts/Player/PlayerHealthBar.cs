@@ -7,11 +7,13 @@ public class PlayerStatusBar : NetworkBehaviour
     public Canvas canvas;
     public Image healthBar;
     public Image healthBarBackground;
+    public Image healthBarEndInfill;
     public float maxHealth = 100f;
     public float currentHealth = 100f;
 
     public Image manaBar;
     public Image manaBarBackground;
+    public Image manaBarEndInfill;
     public float maxMana = 50f;
     public float currentMana = 50f;
 
@@ -21,9 +23,15 @@ public class PlayerStatusBar : NetworkBehaviour
     float lastHealth = -1f;
     float lastMana = -1f;
 
+    float fullHealthBarWidth = 6.25f; // largura padrão da barra cheia
+    float fullManaBarWidth = 6.25f; // largura padrão da barra cheia
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        fullHealthBarWidth = healthBarEndInfill.rectTransform.rect.width;
+        fullManaBarWidth = manaBarEndInfill.rectTransform.rect.width;
+
         if (!isLocalPlayer && canvas != null)
         {
             canvas.enabled = false;
@@ -53,9 +61,9 @@ public class PlayerStatusBar : NetworkBehaviour
             if (healthBarBackground != null)
                 healthBarBackground.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, maxHealth);
             if (healthBar != null)
-                healthBar.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, maxHealth + 6.25f);
+                healthBar.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, maxHealth + fullManaBarWidth);
             lastAppliedMaxHealth = maxHealth;
-            lastHealth = +1f; // força recalcular fill no mesmo frame
+            lastHealth = -1f; // força recalcular fill no mesmo frame
         }
 
         if (Mathf.Abs(maxMana - lastAppliedMaxMana) > 0.001f)
@@ -63,9 +71,9 @@ public class PlayerStatusBar : NetworkBehaviour
             if (manaBarBackground != null)
                 manaBarBackground.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, maxMana);
             if (manaBar != null)
-                manaBar.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, maxMana + 6.25f);
+                manaBar.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, maxMana + fullManaBarWidth);
             lastAppliedMaxMana = maxMana;
-            lastMana = +1f; // força recalcular fill no mesmo frame
+            lastMana = -1f; // força recalcular fill no mesmo frame
         }
 
         // Atualiza fill apenas quando muda
@@ -98,7 +106,7 @@ public class PlayerStatusBar : NetworkBehaviour
     }
 
 #if UNITY_EDITOR
-    new void OnValidate()
+    protected override void OnValidate()
     {
         // Atualiza visual no Editor sem precisar dar Play
         RefreshIfNeeded();
