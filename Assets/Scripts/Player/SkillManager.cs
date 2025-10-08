@@ -28,7 +28,7 @@ public class SkillManager : MonoBehaviour
     {
         // Atualizar cooldowns
         var keys = new List<BaseSkill>(skillCooldowns.Keys);
-        foreach (var skill in keys)
+        foreach (var skill in keys) 
         {
             if (skillCooldowns[skill] > 0)
                 skillCooldowns[skill] -= Time.deltaTime;
