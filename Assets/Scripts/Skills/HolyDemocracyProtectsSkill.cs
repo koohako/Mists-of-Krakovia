@@ -6,7 +6,7 @@ public class HolyDemocracyProtectsSkill : BaseSkill
 {
     public override bool CanExecute(GameObject caster)
     {
-        return !caster.GetComponent<PlayerMovement>().GetDashing();
+        return !caster.GetComponent<PlayerController>().GetState().Equals(PlayerController.PlayerState.Dashing);
     }
 
     public override void Execute(Transform caster, Vector3 targetPosition)
@@ -18,7 +18,7 @@ public class HolyDemocracyProtectsSkill : BaseSkill
 
     IEnumerator PerformHolyDemocracyProtects(Transform transform)
     {
-        transform.GetComponent<PlayerMovement>().SetIsDashing(true);
+        transform.GetComponent<PlayerController>().SetState(PlayerController.PlayerState.Dashing);
         SpriteRenderer sprite = transform.GetComponent<SpriteRenderer>();
         sprite.color = new Color(1f, 1f, 1f, 0.5f); // Torna o sprite semi-transparente
         Collider2D collider = transform.GetComponent<Collider2D>();
@@ -26,7 +26,7 @@ public class HolyDemocracyProtectsSkill : BaseSkill
         yield return new WaitForSeconds(2f);
         collider.enabled = true;
         sprite.color = new Color(1f, 1f, 1f, 1f); // Restaura a opacidade original
-        transform.GetComponent<PlayerMovement>().SetIsDashing(false);
+        transform.GetComponent<PlayerController>().SetState(PlayerController.PlayerState.Idle);
 
         yield return null;
     }

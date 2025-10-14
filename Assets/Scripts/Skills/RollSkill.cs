@@ -12,15 +12,16 @@ public class RollSkill : BaseSkill
 
     public override bool CanExecute(GameObject caster)
     {
-        return !caster.GetComponent<PlayerMovement>().GetDashing();
+        // Verifica se o jogador está no estado "Dashing" (correndo)
+        return caster.GetComponent<PlayerController>().GetState().Equals(PlayerController.PlayerState.Moving);
     }
 
     public override void Execute(Transform caster, Vector3 targetPosition)
     {
-        Debug.Log("Executando Dash");
+        caster.GetComponent<PlayerController>().SetState(PlayerController.PlayerState.Dashing);
         var rb = caster.GetComponent<Rigidbody2D>();
         var runner = caster.GetComponent<MonoBehaviour>();
-        var moveDirection = caster.GetComponent<PlayerMovement>().GetMoveDirection();
+        Vector2 moveDirection = caster.GetComponent<PlayerController>().GetMoveDirection();
         runner.StartCoroutine(PerformDash(caster, moveDirection, rb));
     }
 
@@ -57,6 +58,7 @@ public class RollSkill : BaseSkill
 
         // Garante que chegue na posição final
         rb.MovePosition(endPosition);
+        transform.GetComponent<PlayerController>().SetState(PlayerController.PlayerState.Idle);
 
         // Cooldown
         yield return new WaitForSeconds(dashCooldown);

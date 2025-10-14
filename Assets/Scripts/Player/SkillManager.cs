@@ -1,8 +1,9 @@
+using Mirror;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class SkillManager : MonoBehaviour
+public class SkillManager : NetworkBehaviour
 {
     [Header("Skills")]
     public List<BaseSkill> availableSkills = new List<BaseSkill>();
@@ -10,57 +11,42 @@ public class SkillManager : MonoBehaviour
     [Header("Input")]
     public InputActionReference[] skillInputs = new InputActionReference[4];
     
-    private Dictionary<BaseSkill, float> skillCooldowns = new Dictionary<BaseSkill, float>();
     private Camera mainCamera;
-    
+
+    private CooldownManager cooldownManager;
+
     void Start()
     {
+        cooldownManager = CooldownManager.Instance;
         mainCamera = Camera.main;
-        
-        // Inicializar cooldowns
-        foreach (var skill in availableSkills)
-        {
-            skillCooldowns[skill] = 0f;
-        }
     }
     
     void Update()
     {
-        // Atualizar cooldowns
-        var keys = new List<BaseSkill>(skillCooldowns.Keys);
-        foreach (var skill in keys)
-        {
-            if (skillCooldowns[skill] > 0)
-                skillCooldowns[skill] -= Time.deltaTime;
-        }
-
+        if (!isLocalPlayer) return;
         // Verificar inputs
         for (int i = 0; i < skillInputs.Length && i < availableSkills.Count; i++)
         {
             if (skillInputs[i].action.WasPressedThisFrame())
             {
-                UseSkill(i);
+                CmdUseSkill(i);
             }
         }
     }
-    
-    public void UseSkill(int skillIndex)
+
+    [Command]
+    public void CmdUseSkill(int skillIndex)
     {
         if (skillIndex >= availableSkills.Count) return;
         
         BaseSkill skill = availableSkills[skillIndex];
         
-        if (CanUseSkill(skill))
+        if (cooldownManager.CanUseSkill(netIdentity, skill))
         {
             Vector3 mouseWorldPos = GetMouseWorldPosition();
             skill.Execute(transform, mouseWorldPos);
-            skillCooldowns[skill] = skill.cooldown;
+            cooldownManager.SetCooldown(netIdentity, skill, skill.cooldown);
         }
-    }
-    
-    private bool CanUseSkill(BaseSkill skill)
-    {
-        return skillCooldowns[skill] <= 0f && skill.CanExecute(gameObject);
     }
     
     private Vector3 GetMouseWorldPosition()

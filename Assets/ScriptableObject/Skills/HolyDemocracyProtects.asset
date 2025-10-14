@@ -15,5 +15,5 @@ MonoBehaviour:
   skillName: "Santa Prote\xE7\xE3o Democratica"
   description: 
   icon: {fileID: 0}
-  cooldown: 1
+  cooldown: 2
   manaCost: 0
