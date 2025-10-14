@@ -84,7 +84,7 @@ public class CooldownManager : NetworkBehaviour
     public bool CanUseSkill(NetworkIdentity player, BaseSkill skill)
     {
         if (cooldowns.ContainsKey(player) && cooldowns[player].ContainsKey(skill))
-            return cooldowns[player][skill] == 0f;
+            return cooldowns[player][skill] == 0f && skill.CanExecute(player.gameObject);
         return false; // Jogador ou habilidade não existe
     }
 }
