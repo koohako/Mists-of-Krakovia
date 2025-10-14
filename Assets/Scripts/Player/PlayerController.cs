@@ -20,6 +20,18 @@ public class PlayerController : NetworkBehaviour
     private InputAction moveAction;
     private Rigidbody2D rb;
 
+    public override void OnStartServer()
+    {
+        base.OnStartServer();
+        CooldownManager.Instance.AddPlayer(netIdentity);
+    }
+
+    public override void OnStopServer()
+    {
+        base.OnStopServer();
+        CooldownManager.Instance.RemovePlayer(netIdentity);
+    }
+
     void Awake()
     {
         playerMovement = GetComponent<PlayerMovement>();
